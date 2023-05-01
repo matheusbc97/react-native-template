@@ -1,11 +1,16 @@
-import {View, Text, Button} from 'react-native';
+import {Button, SafeAreaView, View} from 'react-native';
+
 import {IStackScreenProps} from '../navigation/types';
+import {Input} from '../components';
 
 export function LoginScreen({navigation}: IStackScreenProps<'Login'>) {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Login Screen</Text>
-      <Button title="teste" onPress={() => navigation.navigate('Home')} />
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <View style={{flex: 1, marginHorizontal: 20, marginVertical: 5}}>
+        <Input label="Login" />
+        <Input label="Senha" />
+      </View>
+      <Button title="Logar" onPress={() => navigation.navigate('Home')} />
+    </SafeAreaView>
   );
 }
