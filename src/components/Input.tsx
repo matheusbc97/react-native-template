@@ -1,24 +1,38 @@
-import {View, TextInput, Animated} from 'react-native';
+import {useLayoutEffect, useRef} from 'react';
+import {View, TextInput, Animated, TextInputProps} from 'react-native';
 
-export interface IInputProps {
+export interface IInputProps extends TextInputProps {
   label: string;
 }
 
-export function Input({label}: IInputProps) {
-  const animation = new Animated.Value(0);
+export function Input({
+  label,
+  onFocus,
+  onBlur,
+  onChangeText,
+  defaultValue,
+  value: valueProp,
+  ...props
+}: IInputProps) {
+  const animation = useRef(new Animated.Value(0));
+  const value = useRef((defaultValue || valueProp) ?? '');
 
-  const labelMarginTop = animation.interpolate({
-    inputRange: [0, 1],
-    outputRange: [15, 0],
-  });
+  const labelMarginTop = useRef(
+    animation.current.interpolate({
+      inputRange: [0, 1],
+      outputRange: [15, 0],
+    }),
+  ).current;
 
-  const fontSize = animation.interpolate({
-    inputRange: [0, 1],
-    outputRange: [14, 12],
-  });
+  const fontSize = useRef(
+    animation.current.interpolate({
+      inputRange: [0, 1],
+      outputRange: [14, 12],
+    }),
+  ).current;
 
-  const animateOnFocus = () => {
-    Animated.timing(animation, {
+  const animateLabelToTop = () => {
+    Animated.timing(animation.current, {
       toValue: 1,
       duration: 200,
       useNativeDriver: false,
@@ -26,12 +40,20 @@ export function Input({label}: IInputProps) {
   };
 
   const animateOnBlur = () => {
-    Animated.timing(animation, {
-      toValue: 0,
-      duration: 200,
-      useNativeDriver: false,
-    }).start();
+    if (value.current === '') {
+      Animated.timing(animation.current, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: false,
+      }).start();
+    }
   };
+
+  useLayoutEffect(() => {
+    if (value.current) {
+      animation.current.setValue(1);
+    }
+  });
 
   return (
     <View style={{borderBottomWidth: 1, paddingTop: 10, marginVertical: 5}}>
@@ -41,8 +63,21 @@ export function Input({label}: IInputProps) {
       </Animated.Text>
       <TextInput
         style={{paddingVertical: 5}}
-        onFocus={animateOnFocus}
-        onBlur={animateOnBlur}
+        onFocus={e => {
+          animateLabelToTop();
+          onFocus?.(e);
+        }}
+        onBlur={e => {
+          animateOnBlur();
+          onBlur?.(e);
+        }}
+        onChangeText={text => {
+          value.current = text;
+          onChangeText?.(text);
+        }}
+        defaultValue={defaultValue}
+        value={valueProp}
+        {...props}
       />
     </View>
   );
