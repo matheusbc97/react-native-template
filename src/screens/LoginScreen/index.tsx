@@ -1,33 +1,19 @@
 import {SafeAreaView, View, StyleSheet} from 'react-native';
-import {z} from 'zod';
-import {zodResolver} from '@hookform/resolvers/zod';
-import {useForm} from 'react-hook-form';
 
-import {IStackScreenProps} from '../navigation/types';
-import {Button} from '../components';
-import {SmartTextInput} from '../components/SmartInput';
-
-const loginFormSchema = z.object({
-  email: z.string().email().nonempty('Email é obrigatório'),
-  password: z.string().nonempty('Senha é obrigatório'),
-});
-
-type ILoginForm = z.infer<typeof loginFormSchema>;
+import {IStackScreenProps} from '../../navigation/types';
+import {Button} from '../../components';
+import {SmartTextInput} from '../../components/SmartInput';
+import {ILoginForm, useLoginForm} from './hooks/useLoginForm';
 
 export function LoginScreen({navigation}: IStackScreenProps<'Login'>) {
-  const {control, handleSubmit} = useForm<ILoginForm>({
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-    mode: 'all',
-    resolver: zodResolver(loginFormSchema),
-  });
-
   const onSubmit = (data: ILoginForm) => {
     console.log(data);
     navigation.navigate('Home');
   };
+
+  const {control, submitForm} = useLoginForm({
+    onSubmit,
+  });
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -37,7 +23,7 @@ export function LoginScreen({navigation}: IStackScreenProps<'Login'>) {
       </View>
       <Button
         label="Logar"
-        onPress={handleSubmit(onSubmit)}
+        onPress={submitForm}
         style={{alignSelf: 'flex-end'}}
       />
     </SafeAreaView>
