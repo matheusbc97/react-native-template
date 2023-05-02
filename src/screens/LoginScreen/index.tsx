@@ -3,6 +3,7 @@ import {SafeAreaView, View, StyleSheet} from 'react-native';
 import {IStackScreenProps} from '../../navigation/types';
 import {Button} from '../../components';
 import {SmartTextInput} from '../../components/SmartInput';
+
 import {ILoginForm, useLoginForm} from './hooks/useLoginForm';
 
 export function LoginScreen({navigation}: IStackScreenProps<'Login'>) {
