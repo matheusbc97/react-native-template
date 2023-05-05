@@ -19,14 +19,31 @@ O uso do Prettier ajuda a manter a consistência do código ao longo do projeto 
 Instalar as depêndencias `yarn add eslint eslint-config-prettier prettier @typescript-eslint/eslint-plugin @react-native-community/eslint-config` e copiar os arquivos .prettierrc.js e .eslintrc.js
 
 ### Links sobre ESLint e Prettier
-Site ESLint - https://eslint.org/  
-Site Prettier - https://prettier.io/
+Documentação ESLint - https://eslint.org/  
+Documentação Prettier - https://prettier.io/
 
 ## Navegação (React Navigation)
 Seguir os passos em https://reactnavigation.org/docs/getting-started/
 
+### Links sobre React Navigation
+Documentação React Navigation - https://reactnavigation.org/ 
+
 ## Instalando Husky e Commitlint
+### O que é Husky?
+Husky é uma ferramenta que ajuda a garantir a qualidade do código antes de ser enviado para o repositório do Git. Ele permite automatizar tarefas de rotina, como testes de unidade, validação de código, linting e outras ações personalizadas que podem ser executadas antes do commit. O Husky é fácil de instalar e configurar e pode ser usado em projetos em diferentes estágios de desenvolvimento, garantindo a qualidade do código e evitando problemas de integração.
+
+### O que é Commitlint?
+Commitlint é uma ferramenta que ajuda a padronizar as mensagens de commit no Git. Ele permite definir regras personalizadas para validar a formatação da mensagem, o tipo de commit e outras regras relevantes. O uso do Commitlint pode manter o histórico de commits organizado e legível, facilitando a compreensão das alterações e contribuições de cada desenvolvedor.
+
+Com o Commitlint, os desenvolvedores podem definir regras personalizadas para validar as mensagens de commit, como a formatação da mensagem, o tipo de commit, a presença de palavras-chave e outras regras que possam ser relevantes para o projeto. Ele também oferece suporte a várias extensões, como o Conventional Commits, que é uma convenção popular para padronizar as mensagens de commit.
+
+### Instalação do Commitlint e Husky:
+
 Seguir os passos em https://commitlint.js.org/#/./guides-local-setup?id=guides-local-setup
+
+### Links sobre Husky e Commitlint:
+Documentação Husky - https://typicode.github.io/husky/#/  
+Documentação Commitlint - https://commitlint.js.org/#/
 
 ### Commits semanticos (Usando @commitlint/config-conventional)
 Os commits devem ser feitos no seguinte formato: `<type>(<scope>): <subject>` onde `<scope>` é opcional
@@ -51,4 +68,10 @@ React Hook Form é uma biblioteca para React que ajuda a construir e validar for
 ### O que é Zod?
 Zod é uma biblioteca de validação de dados para TypeScript e JavaScript que ajuda a garantir a integridade e segurança dos dados em um projeto. Ele permite definir esquemas de validação de dados para objetos, matrizes, números, strings e muito mais.
 
+### Instalação (React Hook Form)
+`yarn add react-hook-form @hookform/resolvers zod`
+
+### Links React Hook Form e Zod
+Documentação React Hook Form - https://react-hook-form.com/
+Documentação Zod - https://github.com/colinhacks/zod
 
