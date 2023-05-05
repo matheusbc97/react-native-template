@@ -56,6 +56,23 @@ const postsMock: IPost[] = [
   },
 ];
 
+const postsMock2: IPost[] = [
+  {
+    id: 1,
+    title: 'Como melhorar o desempenho do seu site',
+    date: '2020-06-15T10:30:00',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+  {
+    id: 2,
+    title: 'Os desafios da transformação digital nas empresas',
+    date: '2020-08-23T14:45:00',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  },
+];
+
+let count = 0;
+
 function fakeQuery(throwError?: boolean): Promise<IPost[]> {
   return new Promise((resolve, reject) => {
     if (throwError) {
@@ -63,11 +80,12 @@ function fakeQuery(throwError?: boolean): Promise<IPost[]> {
     }
 
     setTimeout(() => {
-      resolve(postsMock);
+      count++;
+      resolve(count % 2 === 0 ? postsMock2 : postsMock);
     }, 2000);
   });
 }
 
 export function getPostsService() {
-  return fakeQuery(true);
+  return fakeQuery();
 }

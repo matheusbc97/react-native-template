@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Button, StyleSheet, Text} from 'react-native';
+import {Button, Text} from 'react-native';
+import {Center} from './Center';
 
 interface Props {
   onTryAgainPress?: (() => void) | undefined | null;
@@ -7,27 +8,13 @@ interface Props {
 
 export const ErrorMessage = ({onTryAgainPress}: Props) => {
   return (
-    <View style={styles.container}>
+    <Center>
       <Text>Ocorreu um erro inesperado</Text>
       <Button
         onPress={onTryAgainPress ?? (() => {})}
         title={'Tentar novamente'}
         color={'red'}
       />
-    </View>
+    </Center>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: 10,
-  },
-  icon: {
-    padding: 15,
-    fontSize: 70,
-    color: '#666',
-  },
-});
