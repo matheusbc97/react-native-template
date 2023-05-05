@@ -2,7 +2,7 @@ import {SafeAreaView, View, StyleSheet} from 'react-native';
 
 import {IStackScreenProps} from '../../navigation/types';
 import {Button} from '../../shared/components';
-import {SmartTextInput} from '../../shared/components/SmartInput';
+import {SmartTextInput} from '../../shared/components/inputs/SmartInput';
 
 import {ILoginForm, useLoginForm} from './hooks/useLoginForm';
 
